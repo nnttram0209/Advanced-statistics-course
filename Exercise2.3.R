@@ -40,13 +40,8 @@ bartlett.test(parasites.new ~ treatment, data = d2)
 
 ## Check if residuals are normally distributed within each group
 plot(anova.m2, 1)
-## The plot shows that there is "wedge"
-## --> Conclusion: The residuals are not normally distributed
 
 emm2 <- emmeans(anova.m2, ~treatment)
 CI95 <- confint(emm2)
 pairs(emm2)
 
-ggplot(CI95, aes(treatment, emmean)) +
-     geom_pointrange(aes(ymin = lower.CL, ymax = upper.CL)) +
-     annotate("text", x=1,y=2.7,label="A", size=5, fontface="bold")
